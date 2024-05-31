@@ -34,7 +34,7 @@ process variantRecalibratorSNP {
     echo $prefix > file
     gatk --java-options "-Xmx${avail_mem}M -XX:-UsePerfData" \\
         VariantRecalibrator \\
-        $tranches \\ 
+        $tranches \\
         --trust-all-polymorphic \\
         -R $referenceGenome/${params.referenceGenomeFasta} \\
         -V ${exactVcfFile} \\
