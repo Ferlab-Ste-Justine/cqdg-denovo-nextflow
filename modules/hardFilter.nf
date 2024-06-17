@@ -28,12 +28,9 @@ process hardFiltering {
         ${filterOptions} \\
         -O  ${prefixId}.hardfilter.vcf.gz \\
         $args
-<<<<<<< HEAD
     """
     stub:
     """
     touch ${prefixId}.hardfilter.vcf.gz
-=======
->>>>>>> 631953f (Change java options to be compliant with config file, Pposibility to add ext args from config file)
     """
 }
