@@ -110,3 +110,19 @@ The documentation of the various tools used in this workflow are available here:
 
 **Reference files**
 🚧
+
+Testing locally
+-----
+
+To run the pipeline locally, you can use the following procedure:
+
+```
+# Download test data from s3 (need to be done only once)
+aws s3 cp s3://cqdg-prod-file-import/test-datasets/remi_antoine_joron_internship2024/data-test.tar.gz .
+tar -xzf data-test.tar.gz
+
+# Run the pipeline on the test data
+nextflow run main.nf -profile test,docker
+```
+
+
