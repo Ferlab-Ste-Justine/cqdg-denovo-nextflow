@@ -33,7 +33,7 @@ process variantRecalibratorSNP {
     """
     set -e
     echo $prefix > file
-    gatk --java-options "-Xmx${avail_mem}M -XX:-UsePerfData $argsjava" \\
+    gatk --java-options "-Xmx${avail_mem}M -XX:-UsePerfData ${argsjava}" \\
         VariantRecalibrator \\
         $tranches \\
         --trust-all-polymorphic \\
@@ -121,7 +121,7 @@ Apply a score cutoff to filter SNP variants based on a recalibration table
 */
 process applyVQSRSNP {
     label 'medium'
-
+    
 
     input:
     tuple val(prefix), path(recal), path(tranches), path(vcf)
