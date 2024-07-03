@@ -216,6 +216,7 @@ process importGVCF {
         avail_mem = (task.memory.mega*0.8).intValue()
     }
 
+
     """
     echo $familyId > file
     gatk -version

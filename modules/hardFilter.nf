@@ -20,6 +20,7 @@ process hardFiltering {
     } else {
         avail_mem = (task.memory.mega*0.8).intValue()
     }
+
     """
     set -e
 
