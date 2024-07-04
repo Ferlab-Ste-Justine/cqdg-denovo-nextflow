@@ -93,7 +93,7 @@ process tabix {
         $vcfFile \\
         $args
     """
-    script:
+    stub:
     """
     touch ${vcfFile}.tbi
     """
