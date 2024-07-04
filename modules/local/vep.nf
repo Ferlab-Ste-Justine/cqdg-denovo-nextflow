@@ -87,7 +87,7 @@ process tabix {
     """
     tabix $vcfFile
     """
-    script:
+    stub:
     """
     touch ${vcfFile}.tbi
     """
