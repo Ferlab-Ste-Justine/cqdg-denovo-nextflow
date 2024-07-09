@@ -282,12 +282,41 @@ process genotypeGVCF {
     """
 }
 
+
+process writemeta{
+
+    publishDir "${params.outputDir}/pipeline_info/", mode: 'copy'
+   
+    output:
+    path("metadata.txt")
+
+    script:
+    """
+     cat <<EOF > metadata.txt
+    Work Dir : ${workflow.workDir}
+    UserName : ${workflow.userName}
+    ConfigFiles : ${workflow.configFiles}
+    Container : ${workflow.container}
+    Start date : ${workflow.start}
+    Command Line : ${workflow.commandLine}
+    Revision : ${workflow.revision}
+    CommitId : ${workflow.commitId}
+    """
+}
+
+
+
 workflow {
     referenceGenome = file(params.referenceGenome)
     broad = file(params.broad)
     vepCache = file(params.vepCache)
     file(params.outputDir).mkdirs()
 
+    Channel
+    .fromList(workflow.configFiles)
+    .collectFile(storeDir: "${params.outputDir}/pipeline_info/configs")
+
+    writemeta()
     sampleChannel().set{ sampleFile }
 
     //Exclude MNPs and recombine files per family id
